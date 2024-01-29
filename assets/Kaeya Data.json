@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Kaeya",
+        "rarity": 4,
+        "description": "An accomplished swordsman and a strategic thinker in the Knights of Favonius, rumored to hail from beyond Mondstadt.",
+        "afiliation": "Knights of Favonius",
+        "constellations": [
+            { "name" : "Normal Attack: Sharpshooter" , "description" : ""},
+            { "name" : "Explosive Puppet" , "description" : ""},
+            { "name" : "Fiery Rain" , "description" : ""},
+            { "name" : "Every Arrow Finds Its Target" , "description" : ""},
+            { "name" : "Precise Shot" , "description" : ""},
+            { "name" : "Gliding Champion" , "description" : ""}
+        ],
+        "talents": [
+            { "name" : "Normal Attack: Sharpshooter" , "description" : ""},
+            { "name" : "Explosive Puppet" , "description" : ""},
+            { "name" : "Fiery Rain" , "description" : ""},
+            { "name" : "Every Arrow Finds Its Target" , "description" : ""},
+            { "name" : "Precise  Shot" , "description" : ""},
+            { "name" : "Gliding Champion" , "description" : ""}
+        ]
+    }
+]
