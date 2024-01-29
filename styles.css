@@ -1,9 +1,11 @@
 :root{
     --main-color: rgba(000, 016, 064, 1);
     --secundary-color: rgba(000, 024, 096, 1);
-    --page-min-height: calc(100vh - 48px - 64px - var(--padding-gap));
+    --page-min-height: calc(100vh - 48px - 64px - var(
+    --padding-gap));
     --gap: 8px;
-    --padding-gap: calc(var(--gap) * 2);
+    --padding-gap: calc(var(
+    --gap) * 2);
 }
 * {
     margin: 0px;
@@ -59,12 +61,12 @@ main .page .col2 {
     gap: var(--padding-gap);
     flex-direction: column;
 }
-#characters-container {
+#characters-container, #weapons-container {
     min-height: 64px;
     width: 100%;
 }
-#characters-container nav, #weapons-container nav {
-    width: calc(100% - var(--padding-gap));
+nav {
+    width: calc(100% - var(--padding-gap) - var(--gap));
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -73,44 +75,54 @@ main .page .col2 {
     overflow: hidden;
     margin: var(
     --gap);
+    padding: calc(var(--gap) / 2);
+    gap: calc(var(--gap) / 2);
 }
-#characters-container nav input, #weapons-container nav input{
-    width: calc(100% - (34px + 34px + 48px + var(--gap)) + 12px);
-    padding: 0px;
+nav input{
+    width: calc(100% - (34px + 34px + 48px + var(--gap)) + 8px);
+    padding: 8px;
     display: inline-block;
-    height: 32px;
-    border: 0;
+    height: calc(32px - var(--gap) - 16px);
+    border-radius: var(--gap) 0 0 var(--gap);
+    border: 0px;
     background-color: rgb(238 238 238);
     overflow: hidden;
 }
-#characters-container nav .button-search, #weapons-container nav .button-search {
-    width: 32px;
-    height: 32px;
+nav .button-search {
+    width: calc(32px - var(--gap));
+    height: calc(32px - var(--gap));
     padding: 0px;
     display: inline-block;
-    border-radius: 0px;
     border: 0px;
-    background-color: rgb(238 238 238);
+    color: rgb(000 128 128);
 }
-#characters-container nav .button-filter, #weapons-container nav .button-filter{
-    width: 32px;
-    height: 32px;
+nav .button-search:hover{
+    background-color: rgb(0, 255, 255);
+}
+nav .button-filter{
+    width: calc(32px - var(--gap));
+    height: calc(32px - var(--gap));
     padding: 0px;
     display: inline-block;
-    border-radius: 0px;
     border: 0px;
-    background-color: rgb(238 238 238);
+    color: rgb(128 000 128);
 }
-#characters-container nav .button-add, #weapons-container nav .button-add{
-    width: 48px;
-    height: 32px;
+nav .button-filter:hover{
+    background-color: rgb(255, 000, 255);
+}
+nav .button-add{
+    width: calc(48px - var(--gap));
+    height: calc(32px - var(--gap));
     padding: 0px;
     display: inline-block;
-    border-radius: 0px;
+    border-radius: 0 var(--gap) var(--gap) 0;
     border: 0px;
-    background-color: rgb(238 238 238);
+    color: rgb(0, 128, 0);
 }
-#characters-container nav .options, #weapons-container nav .options{
+nav .button-add:hover{
+    background-color: rgb(000, 255, 000);
+}
+nav .options {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -119,57 +131,71 @@ main .page .col2 {
     padding: var(--gap);
     text-align: center;
 }
-#characters-container nav .options select, #weapons-container nav .options select{
+nav .options select{
     border: 0px;
 }
-main .page .col2 #characters-container container {
+container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-#characters-container container item {
+item {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     width: calc(100% / 3 - var(--gap) * 4);
     margin: var(--gap);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--gap);
     padding: var(--gap);
     gap: var(--gap);
+    box-shadow: 0 0 4px black;
 }
-#characters-container container item .images {
+item[name*="Quality5"]{background-color: rgb(255, 192, 000, 0.25);}
+item[name*="Quality4"]{background-color: rgb(192, 000, 255, 0.25);}
+item .name {width: 100%;text-align: center;}
+item .images {
     width: 96px;
     height: 96px;
     display: flex;
     margin-left: calc((100% - 96px) / 2);
     margin-right: calc((100% - 96px) / 2);
 }
-main .page .col2 #characters-container container item .images .image-icon { width: 96px; height: 96px; }
-main .page .col2 #characters-container container item .images .image-element {width: 32px;height: 32px;margin-right: -32px;filter: drop-shadow(0px 0px 4px black);}
-main .page .col2 #characters-container container item .images .image-weapon {width: 32px;height: 32px;margin-left: -32px;filter: drop-shadow(0px 0px 4px black);}
-main .page .col2 #characters-container container item .data {display: flex;flex-direction: row;flex-wrap: wrap;text-align: center;}
-main .page .col2 #characters-container container item .data .data-col1 { width: 50%; }
-main .page .col2 #characters-container container item .data .data-col2 { width: 50%; }
-main .page .col2 #characters-container container item .talents {text-align: center;}
-main .page .col2 #characters-container container item .constellation {text-align: center;width: calc(100% / 3 * 2);}
-main .page .col2 #characters-container container item .data .level {text-align: center;width: calc(100% / 3 * 2);}
-main .page .col2 #characters-container container item .name {width: 100%;text-align: center;}
-main .page .col2 #weapons-container {
-    min-height: 64px;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+item .images .image-icon { 
+    width: 96px; 
+    height: 96px; 
 }
+item .images .image-element {
+    width: 32px;
+    height: 32px;
+    margin-right: -32px;
+    filter: drop-shadow(0px 0px 4px black);
+}
+item .images .image-weapon {
+    width: 32px;
+    height: 32px;
+    margin-left: -32px;
+    filter: drop-shadow(0px 0px 4px black);
+}
+item .data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+item .data .data-col1 { width: 50%; }
+item .data .data-col2 { width: 50%; }
+item .talents {text-align: center;}
+item .constellation {text-align: center;width: calc(100% / 3 * 2);}
+item .data .level {text-align: center;width: calc(100% / 3 * 2);}
 
 /* <footer> */
-    footer {
-        max-width: 100%;
-        padding: var(--gap);
-        height: calc(64px - var(--padding-gap));
-        background-color: var(--main-color);
-        color: var(--secundary-color);
-    }
+footer {
+    max-width: 100%;
+    padding: var(--gap);
+    height: calc(64px - var(--padding-gap));
+    background-color: var(--main-color);
+    color: var(--secundary-color);
+}
 
     
     
@@ -196,13 +222,43 @@ main .page .col2 #weapons-container {
         min-height: 00px;
     }
 }
-@media screen and (max-width: calc(512px * 6.0)) { #characters-container container item { width: calc(100% / 10 - 32px); } }
-@media screen and (max-width: calc(512px * 5.5)) { #characters-container container item { width: calc(100% / 09 - 32px); } }
-@media screen and (max-width: calc(512px * 5.0)) { #characters-container container item { width: calc(100% / 08 - 32px); } }
-@media screen and (max-width: calc(512px * 4.5)) { #characters-container container item { width: calc(100% / 07 - 32px); } }
-@media screen and (max-width: calc(512px * 4.0)) { #characters-container container item { width: calc(100% / 06 - 32px); } }
-@media screen and (max-width: calc(512px * 3.5)) { #characters-container container item { width: calc(100% / 05 - 32px); } }
-@media screen and (max-width: calc(512px * 3.0)) { #characters-container container item { width: calc(100% / 04 - 32px); } }
-@media screen and (max-width: calc(512px * 2.5)) { #characters-container container item { width: calc(100% / 03 - 32px); } }
-@media screen and (max-width: calc(512px * 2.0)) { #characters-container container item { width: calc(100% / 02 - 32px); } }
-@media screen and (max-width: calc(512px * 1.0)) { #characters-container container item { width: calc(100% / 01 - 32px); } }
+@media screen and (max-width: calc(512px * 21.5)) { item { width: calc(100% / 40 - 32px); } }
+@media screen and (max-width: calc(512px * 20.0)) { item { width: calc(100% / 39 - 32px); } }
+@media screen and (max-width: calc(512px * 20.5)) { item { width: calc(100% / 38 - 32px); } }
+@media screen and (max-width: calc(512px * 19.0)) { item { width: calc(100% / 37 - 32px); } }
+@media screen and (max-width: calc(512px * 19.5)) { item { width: calc(100% / 36 - 32px); } }
+@media screen and (max-width: calc(512px * 18.0)) { item { width: calc(100% / 35 - 32px); } }
+@media screen and (max-width: calc(512px * 18.5)) { item { width: calc(100% / 34 - 32px); } }
+@media screen and (max-width: calc(512px * 17.0)) { item { width: calc(100% / 33 - 32px); } }
+@media screen and (max-width: calc(512px * 17.5)) { item { width: calc(100% / 32 - 32px); } }
+@media screen and (max-width: calc(512px * 16.0)) { item { width: calc(100% / 31 - 32px); } }
+@media screen and (max-width: calc(512px * 16.0)) { item { width: calc(100% / 30 - 32px); } }
+@media screen and (max-width: calc(512px * 15.5)) { item { width: calc(100% / 29 - 32px); } }
+@media screen and (max-width: calc(512px * 15.0)) { item { width: calc(100% / 28 - 32px); } }
+@media screen and (max-width: calc(512px * 14.5)) { item { width: calc(100% / 27 - 32px); } }
+@media screen and (max-width: calc(512px * 14.0)) { item { width: calc(100% / 26 - 32px); } }
+@media screen and (max-width: calc(512px * 13.5)) { item { width: calc(100% / 25 - 32px); } }
+@media screen and (max-width: calc(512px * 13.0)) { item { width: calc(100% / 24 - 32px); } }
+@media screen and (max-width: calc(512px * 12.5)) { item { width: calc(100% / 23 - 32px); } }
+@media screen and (max-width: calc(512px * 12.0)) { item { width: calc(100% / 22 - 32px); } }
+@media screen and (max-width: calc(512px * 11.5)) { item { width: calc(100% / 21 - 32px); } }
+@media screen and (max-width: calc(512px * 11.0)) { item { width: calc(100% / 20 - 32px); } }
+@media screen and (max-width: calc(512px * 10.5)) { item { width: calc(100% / 19 - 32px); } }
+@media screen and (max-width: calc(512px * 10.0)) { item { width: calc(100% / 18 - 32px); } }
+@media screen and (max-width: calc(512px *  9.5)) { item { width: calc(100% / 17 - 32px); } }
+@media screen and (max-width: calc(512px *  9.0)) { item { width: calc(100% / 16 - 32px); } }
+@media screen and (max-width: calc(512px *  8.5)) { item { width: calc(100% / 15 - 32px); } }
+@media screen and (max-width: calc(512px *  8.0)) { item { width: calc(100% / 14 - 32px); } }
+@media screen and (max-width: calc(512px *  7.5)) { item { width: calc(100% / 13 - 32px); } }
+@media screen and (max-width: calc(512px *  7.0)) { item { width: calc(100% / 12 - 32px); } }
+@media screen and (max-width: calc(512px *  6.5)) { item { width: calc(100% / 11 - 32px); } }
+@media screen and (max-width: calc(512px *  6.0)) { item { width: calc(100% / 10 - 32px); } }
+@media screen and (max-width: calc(512px *  5.5)) { item { width: calc(100% / 09 - 32px); } }
+@media screen and (max-width: calc(512px *  5.0)) { item { width: calc(100% / 08 - 32px); } }
+@media screen and (max-width: calc(512px *  4.5)) { item { width: calc(100% / 07 - 32px); } }
+@media screen and (max-width: calc(512px *  4.0)) { item { width: calc(100% / 06 - 32px); } }
+@media screen and (max-width: calc(512px *  3.5)) { item { width: calc(100% / 05 - 32px); } }
+@media screen and (max-width: calc(512px *  3.0)) { item { width: calc(100% / 04 - 32px); } }
+@media screen and (max-width: calc(512px *  2.5)) { item { width: calc(100% / 03 - 32px); } }
+@media screen and (max-width: calc(512px *  2.0)) { item { width: calc(100% / 02 - 32px); } }
+@media screen and (max-width: calc(512px *  0.5)) { item { width: calc(100% / 01 - 32px); } }
