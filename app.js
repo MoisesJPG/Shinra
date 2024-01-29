@@ -1,13 +1,11 @@
 var database = GetDatabase();
 
-
 // Cargar el último valor almacenado al cargar la página
 window.onload = function() {
     console.log(database);
     for (const name in database.characters) {
         const character = database.characters[name];
         addToCharacterContainer(name);
-
     }
 };
 function changeCharacterElement(name, elementName, This){
@@ -25,7 +23,6 @@ function changeCharacterElement(name, elementName, This){
             isNext = true;
         }
     }
-    console.log(isNext);
     if(isNext){
         nextElement = 0;
     }
@@ -66,7 +63,7 @@ function addToCharacterContainer(name){
 function saveData() { localStorage.setItem('mainData', database); }
 
 // Función para exportar los datos almacenados
-function exportarDatos() {
+function exportData() {
     const jsonData = JSON.stringify(localStorage.getItem('mainData'));
     const enlaceDescarga = document.createElement('a');
     enlaceDescarga.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData);
@@ -75,7 +72,7 @@ function exportarDatos() {
 }
 
 // Función para importar datos desde un archivo JSON
-function importarDatos() {
+function importData() {
     const inputImportar = document.createElement('input');
     inputImportar.type = 'file';
 
@@ -89,18 +86,8 @@ function importarDatos() {
                 try {
                     const datosImportados = JSON.parse(e.target.result);
 
-                    // Verificar si el archivo tiene la estructura esperada
-                    if (datosImportados && datosImportados.dato) {
-                        // Almacenar el dato importado en localStorage
-                        localStorage.setItem('mainData', datosImportados.dato);
-
-                        // Mostrar el dato importado
-                        mostrarDato.innerText = datosImportados.dato;
-
-                        alert('Datos importados correctamente.');
-                    } else {
-                        alert('Formato de archivo incorrecto.');
-                    }
+                    localStorage.setItem('mainData', datosImportados);
+                    console.log(datosImportados);
                 } catch (error) {
                     alert('Error al leer el archivo.');
                 }
@@ -115,8 +102,8 @@ function importarDatos() {
 }
 
 // Función para borrar todos los datos almacenados
-function borrarTodosLosDatos() {
+function clearData() {
     localStorage.clear();
-    mostrarDato.innerText = 'Ningún dato almacenado';
     alert('Todos los datos han sido borrados.');
+    window.location.reload();
 }
