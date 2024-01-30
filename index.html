@@ -8,15 +8,16 @@
 </head>
 <body>
     <header>
-        <h1 onclick="clearData()">Mi</h1>
-        <a onclick="saveData()">Save</a>
-        <a onclick="exportData()">Export</a>
-        <a onclick="importData()">Import</a>
-        <a onclick="clearData()">Clear</a>
+        <h1 onclick="clearData()">Mi
+            <a onclick="saveData()  ">[Save]</a>
+            <a onclick="exportData()">[Export]</a>
+            <a onclick="importData()">[Import]</a>
+            <a onclick="clearData() ">[Clear]</a>
+        </h1>
     </header>
 
     <main>
-        <div id="planner" class="page">
+        <div id="planner" class="page" style="display: none;">
             <div class="col1">
                 <div id="materials-container"></div>
             </div>
@@ -112,15 +113,60 @@
                 </div>
             </div>
         </div>
+        <div id="loading" class="page">
+            <div class="loading-circle"></div>
+            <style>
+                .loading-circle { 
+                    border: 8px solid #f3f3f3;
+                    border-top: 8px solid #3498db; 
+                    border-radius: 50%; 
+                    width: 50px; 
+                    height: 50px; 
+                    animation: spin 1s linear infinite;
+                }        
+                @keyframes spin {
+                      0% {  transform: rotate(  0deg) scale(1.0); }
+                     25% {  transform: rotate( 45deg) scale(1.0); }    
+                     50% {  transform: rotate(180deg) scale(1.0); }    
+                     75% {  transform: rotate(315deg) scale(1.0); }    
+                    100% {  transform: rotate(360deg) scale(1.0); }
+                }
+            </style>
+        </div>
     </main>
 
     <footer>
-       <!--
-           <p>Los datos se almacenan localmente. Si borras los datos del navegador, se perderán. ¡Recuerda exportar tus datos antes de borrarlos!</p>
-       --> 
+        <p>Los datos se almacenan localmente. Si borras los datos del navegador, se perderán. ¡Recuerda exportar tus datos antes de borrarlos!</p> 
     </footer>
     <script src="database.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js"></script><script src="https://unpkg.com/sortablejs@1.14.0/Sortable.min.js"></script>
+    <script>
+        var contenedor = document.getElementById('characters-container').getElementsByTagName('container')[0];
+        new Sortable(contenedor, {
+            animation: 150,
+            onEnd: function (evt) {
+                for (var item = 0; item < contenedor.getElementsByTagName('item').length; item++) {
+                    if(item === "length" || item === "item"){
+                        console.log(item);
+                    }else{
+                        console.log(item+"::");
+                        if (contenedor.getElementsByTagName('item')[item].getAttribute('name') == evt.item.getAttribute('name')) {
+                            database.characters[evt.item.getAttribute('name').split("-")[0]].order = item;
+                            contenedor.getElementsByTagName('item')[item].setAttribute('name', `${evt.item.getAttribute('name').split("-")[0]}-${evt.item.getAttribute('name').split("-")[1]}-${evt.item.getAttribute('name').split("-")[2]}-id${item}`)
+                        }
+                        var _name = contenedor.getElementsByTagName('item')[item].getAttribute('name');
+                        database.characters[_name.split("-")[0]].order = item;
+                        contenedor.getElementsByTagName('item')[item].setAttribute('name',`${_name.split("-")[0]}-${_name.split("-")[1]}-${_name.split("-")[2]}-id${item}`)
+                    }
+                }
+                database.characters = Object.values(database.characters).sort((a, b) => a.order - b.order).reduce((acc, character) => {
+                    acc[character.name] = character;
+                    return acc;
+                }, {});
+                saveData();
+            }
+        });
+    </script>
 
 </body>
 </html>

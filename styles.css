@@ -1,13 +1,15 @@
 :root{
     --main-color: rgba(000, 016, 064, 1);
     --secundary-color: rgba(000, 024, 096, 1);
-    --page-min-height: calc(100vh - 48px - 64px - var(
-    --padding-gap));
+    --page-min-height: calc(100vh - 48px - 80px - var(--padding-gap) - var(--padding-gap));
     --gap: 8px;
-    --padding-gap: calc(var(
-    --gap) * 2);
+    --padding-gap: calc(var(--gap) * 2);
+}
+::-webkit-scrollbar{
+    display: none;
 }
 * {
+    user-select: none;
     margin: 0px;
 }
 body {
@@ -39,7 +41,8 @@ main .page{
     padding: var(--gap);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    gap: var(--padding-gap);
+    align-content: center;
+    justify-content: center;
 }
 main .page .col1 {
     width: calc(512px);
@@ -153,6 +156,11 @@ item {
 item[name*="Quality5"]{background-color: rgb(255, 192, 000, 0.25);}
 item[name*="Quality4"]{background-color: rgb(192, 000, 255, 0.25);}
 item .name {width: 100%;text-align: center;}
+item .move {    width: 28px;
+    text-align: center;
+    height: 28px;
+    margin-left: calc(100% - var(--padding-gap) - 4px - var(--gap));
+    margin-top: -36px;}
 item .images {
     width: 96px;
     height: 96px;
